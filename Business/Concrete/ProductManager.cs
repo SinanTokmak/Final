@@ -20,7 +20,12 @@ namespace Business.Concrete
 
         public List<Product> GetAll()
         {
-            return _productDal.GetAll();
+            return _productDal.GetAll(); // p=>p.PategoryId==2
+        }
+
+        public List<Product> GetAllCategoryId(int id)
+        {
+            return _productDal.GetAll(p=>p.CategoryID==id);
         }
     }
 }

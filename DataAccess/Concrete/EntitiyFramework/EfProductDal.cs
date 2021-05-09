@@ -14,29 +14,29 @@ namespace DataAccess.Concrete.EntitiyFramework
     {
         public void Add(Product entity)
         {
-            using (NorthwindContex contex = new NorthwindContex())
+            using (NorthwindContex context = new NorthwindContex())
             {
-                var addedEntity = contex.Entry(entity);
+                var addedEntity = context.Entry(entity);
                 addedEntity.State = EntityState.Added;
-                contex.SaveChanges();
+                context.SaveChanges();
             }
         }
 
         public void Delete(Product entity)
         {
-            using (NorthwindContex contex = new NorthwindContex())
+            using (NorthwindContex context = new NorthwindContex())
             {
-                var deletedEntity = contex.Entry(entity);
+                var deletedEntity = context.Entry(entity);
                 deletedEntity.State = EntityState.Deleted;
-                contex.SaveChanges();
+                context.SaveChanges();
             }
         }
 
         public Product Get(Expression<Func<Product, bool>> filter)
         {
-            using (NorthwindContex contex = new NorthwindContex())
+            using (NorthwindContex context = new NorthwindContex())
             {
-                return contex.Set<Product>().SingleOrDefault(filter);
+                return context.Set<Product>().SingleOrDefault(filter);
             }
         }
 
@@ -50,11 +50,11 @@ namespace DataAccess.Concrete.EntitiyFramework
 
         public void Update(Product entity)
         {
-            using (NorthwindContex contex = new NorthwindContex())
+            using (NorthwindContex context = new NorthwindContex())
             {
-                var UpdatedEntity = contex.Entry(entity);
+                var UpdatedEntity = context.Entry(entity);
                 UpdatedEntity.State = EntityState.Modified;
-                contex.SaveChanges();
+                context.SaveChanges();
             }
         }
     }

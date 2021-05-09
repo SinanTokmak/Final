@@ -15,7 +15,7 @@ namespace ConsoleUI
             foreach (var product in productManager.GetAll())
             {
                 //Console.WriteLine("Ürün adı: " + product.ProductName + " Fiyatı: " + product.UnitPrice + " Stok " + product.UnitsInStock);
-                Console.WriteLine(product.ProductName);
+                Console.WriteLine(product.ProductName + "   Unit Stock  " + product.UnitsInStock + "    UnitPrice:   " + product.UnitPrice);
             }
         }
     }

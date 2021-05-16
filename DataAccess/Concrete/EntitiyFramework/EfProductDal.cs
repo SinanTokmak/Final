@@ -1,4 +1,5 @@
 ﻿using DataAccess.Abstract;
+using DataAccess.DTOs;
 using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -14,6 +15,7 @@ namespace DataAccess.Concrete.EntitiyFramework
     {
         public void Add(Product entity)
         {
+            // Bu kötü kod çok new yapıyoruz. Düzeltilecek.
             using (NorthwindContex context = new NorthwindContex())
             {
                 var addedEntity = context.Entry(entity);
@@ -45,6 +47,18 @@ namespace DataAccess.Concrete.EntitiyFramework
             using (NorthwindContex context = new NorthwindContex())
             {
                 return filter == null ? context.Set<Product>().ToList() : context.Set<Product>().Where(filter).ToList();
+            }
+        }
+
+        public List<ProductDetailDto> GetProductDetails()
+        {
+            using (NorthwindContex context = new NorthwindContex())
+            {
+                var result = from p in context.Products
+                             join c in context.Categories
+                             on p.CategoryID equals c.CategoryId
+                             select new ProductDetailDto { ProductId = p.ProductId, ProductName = p.ProductName, CategoryName = c.CategoryName, UnitInStock = p.UnitsInStock };
+                return result.ToList();
             }
         }
 

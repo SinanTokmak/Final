@@ -1,4 +1,5 @@
 ﻿using DataAccess.Abstract;
+using DataAccess.DTOs;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -15,11 +16,11 @@ namespace DataAccess.Concrete.Inmemory
         public InMemoryProductDal()
         {
             _products = new List<Product>{
-            new Product { CategoryID = 1, ProductID = 1, ProductName = "Merkez Bankası", UnitPrice = 128000000000, UnitsInStock = 1 },
-            new Product { CategoryID = 2, ProductID = 2, ProductName = "Dinozor Heykeli", UnitPrice = 750000000, UnitsInStock = 1 },
-            new Product { CategoryID = 3, ProductID = 3, ProductName = "VIP Uçak", UnitPrice = 400000000, UnitsInStock = 1 },
-            new Product { CategoryID = 4, ProductID = 1, ProductName = "Kanal Istanbul", UnitPrice = 20000000000, UnitsInStock = 1 },
-            new Product { CategoryID = 5, ProductID = 3, ProductName = "Mercedes-Maybach S 600 Pullmann Guard", UnitPrice = 80000000, UnitsInStock = 32000 },
+            new Product { CategoryID = 1, ProductId = 1, ProductName = "Merkez Bankası", UnitPrice = 128000000000, UnitsInStock = 1 },
+            new Product { CategoryID = 2, ProductId = 2, ProductName = "Dinozor Heykeli", UnitPrice = 750000000, UnitsInStock = 1 },
+            new Product { CategoryID = 3, ProductId = 3, ProductName = "VIP Uçak", UnitPrice = 400000000, UnitsInStock = 1 },
+            new Product { CategoryID = 4, ProductId = 1, ProductName = "Kanal Istanbul", UnitPrice = 20000000000, UnitsInStock = 1 },
+            new Product { CategoryID = 5, ProductId = 3, ProductName = "Mercedes-Maybach S 600 Pullmann Guard", UnitPrice = 80000000, UnitsInStock = 32000 },
         };
 
         }
@@ -49,7 +50,7 @@ namespace DataAccess.Concrete.Inmemory
             _products.Remove(productTodelete);*/
             #endregion
 
-            Product productToDelete = _products.SingleOrDefault(p => p.ProductID == product.ProductID);
+            Product productToDelete = _products.SingleOrDefault(p => p.ProductId == product.ProductId);
         }
 
         public List<Product> GetAllByCategory(int categoryID)
@@ -59,9 +60,9 @@ namespace DataAccess.Concrete.Inmemory
 
         public void Update(Product product)
         {
-            Product productToUpdate = _products.SingleOrDefault(p => p.ProductID == product.ProductID);
+            Product productToUpdate = _products.SingleOrDefault(p => p.ProductId == product.ProductId);
             productToUpdate.ProductName = product.ProductName;
-            productToUpdate.ProductID = product.ProductID;
+            productToUpdate.ProductId = product.ProductId;
             productToUpdate.CategoryID = product.CategoryID;
             productToUpdate.UnitsInStock = product.UnitsInStock;
         }
@@ -72,6 +73,11 @@ namespace DataAccess.Concrete.Inmemory
         }
 
         public Product Get(Expression<Func<Product, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<ProductDetailDto> GetProductDetails()
         {
             throw new NotImplementedException();
         }

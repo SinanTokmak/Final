@@ -24,7 +24,10 @@ namespace WebAPI.Controllers
         public IActionResult GetAll()
         {
             var result = _productService.GetAll();
-            if (result.Success) return Ok(result.Data);
+            if (result.Success)
+            {
+                return Ok(result.Data);
+            }
 
             return BadRequest(result.Message);
         }
